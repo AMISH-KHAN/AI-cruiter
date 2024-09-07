@@ -42,7 +42,7 @@ const InterviewPage = () => {
   // const navigate=useNavigate()
   const location = useLocation();
   const [startInterview,setStartInterview]=useState(false)
-  const [arrayanswer, setArrayAnswers] = useState<ResultType[]|string[]>([""])
+  const [arrayanswer, setArrayAnswers] = useState<ResultType[]|string[]>([])
   const [geminiResponse,setGemeniResponse]=useState('')
   const { formatedResponse} = location.state || {};
   const [questionNumber,setQusetionNumber]=useState(0)
@@ -51,10 +51,14 @@ const InterviewPage = () => {
  async function endInterview() {
     // console.log("asnwers from mic",arrayanswer[0].transcript)
     for (let i = 0; i < formatedResponse.length; i++) {
-      
+      let asnwer = arrayanswer[i]
+      let answer2;
+      if (typeof asnwer !== "string") {
+        answer2=asnwer.transcript
+      }
       feedbackAnswers.push({
         question: formatedResponse[i].question,
-        answer:arrayanswer[i].transcript
+        answer:answer2??""
       })
     }
     
