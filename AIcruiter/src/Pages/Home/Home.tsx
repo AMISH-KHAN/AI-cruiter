@@ -69,7 +69,35 @@ Interview Scheduling: Easily schedule follow-up interviews with recruiters based
       </div>
       <div className=" my-20">
 
-            <h1 className="text-5xl font-semibold text-center">For For Recruiters:</h1>
+            <h1 className="text-5xl font-semibold text-center">For For Candidate:</h1>
+          
+            {candidateFeatures.map((value, key) => {
+              return (
+                <div key={key} className="h-screen">
+      <div className="flex  items-center flex-col-reverse md:flex-row-reverse gap-8 h-full">
+        <div className="md:w-1/2 w-[80%] p-4 md:h-3/5 h-1/2">
+          <div className="bg-white/50 w-full h-full flex  items-center justify-center " >
+            image
+            </div>
+        </div>
+                    <div className="md:w-1/2 w-full">
+                      <div className="w-[80%] m-auto">
+
+                  <h1 className="font-semibold text-3xl text-center">{value.head}:</h1>
+                  <p className="my-8 text-xl text-center">{value.value}</p>
+                      </div>
+
+                </div>
+                
+        </div>
+      </div>
+              )
+            })}
+            
+            </div>
+      <div className=" my-20">
+
+            <h1 className="text-5xl font-semibold text-center">For Requiter:</h1>
           
             {recruiterFeature.map((value, key) => {
               return (
