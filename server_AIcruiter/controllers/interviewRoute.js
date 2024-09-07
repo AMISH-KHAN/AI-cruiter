@@ -1,12 +1,12 @@
 const express = require("express")
 const interview = require("../modals/interviewSchema")
 const mongoose=require("mongoose")
-
+const [verifyToken] = require("../Auth/Verification")
 
 const router = express.Router()
 
 
-router.post("/",async (req, res) => {
+router.post("/",verifyToken ,async (req, res) => {
     try {
         
         console.log(req.body)
@@ -20,7 +20,7 @@ router.post("/",async (req, res) => {
     }
 })
 
-router.get("/:id", async(req, res) => {
+router.get("/:id",verifyToken ,async(req, res) => {
     try
     {
         const userId =  req.params.id 
@@ -42,7 +42,7 @@ router.get("/:id", async(req, res) => {
     }
 })
 
-router.get("/singleinterview/:id", async (req, res) => {
+router.get("/singleinterview/:id",verifyToken , async (req, res) => {
     try {
         const Id = req.params.id
         let data
@@ -63,7 +63,7 @@ router.get("/singleinterview/:id", async (req, res) => {
     }
 })
 
-router.put("/singleinterview/:id", async (req, res) => {
+router.put("/singleinterview/:id", verifyToken ,async (req, res) => {
     try {
         const data = await interview.findOne({ _id: req.body.interviewid })
         if (data) {

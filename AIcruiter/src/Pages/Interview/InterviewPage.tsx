@@ -24,8 +24,8 @@ function seprategeminiResponse(data:string) {
     const averageMarks = averageMarksLine ? averageMarksLine.split(":**")[1].trim() : null;
 
     // Find the line containing "Overall Feedback:"
-    const feedbackLine = lines.find(line => line.startsWith("**Overall Feedback:"));
-
+    const feedbackLine = lines.find(line => line.startsWith("**Overall Feedback:**"));
+    console.log(feedbackLine)
     // Extract the overall feedback (excluding the first line)
     const overallFeedback = feedbackLine ? lines.slice(lines.indexOf(feedbackLine) + 1).join("\n").trim() : null;
     let processedData = {
@@ -49,12 +49,12 @@ const InterviewPage = () => {
  
   let feedbackAnswers:interviewAnswer[]=[]
  async function endInterview() {
-    console.log(arrayanswer)
+    // console.log("asnwers from mic",arrayanswer[0].transcript)
     for (let i = 0; i < formatedResponse.length; i++) {
       
       feedbackAnswers.push({
         question: formatedResponse[i].question,
-        answer:arrayanswer[i]
+        answer:arrayanswer[i].transcript
       })
     }
     

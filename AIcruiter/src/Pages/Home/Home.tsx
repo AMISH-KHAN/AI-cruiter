@@ -16,14 +16,7 @@ export default function Home() {
       head:"Skill Assessment Reports",
       value: `Get comprehensive reports on skills and competencies evaluated during the interview.
 Interview Scheduling: Easily schedule follow-up interviews with recruiters based on availability.`},
-{
-head:"Career Development Resources",
-value: `Access a library of resources, including resume tips and career advice.
-Profile Matching: Receive job recommendations that match your skills and preferences.`},
-{
-head:"Progress Tracking",
-value: `Track your application status and progress through the hiring pipeline.`
-  }]
+]
 
   const recruiterFeature=[{
     head: "Automated Candidate Ranking",
@@ -37,14 +30,7 @@ value: `Track your application status and progress through the hiring pipeline.`
     head: "Analytics Dashboard",
     value: "Gain insights into candidate performance and recruitment metrics with an analytics dashboard."
   },
-  {
-    head: "Bulk Interview Scheduling",
-    value: "Schedule interviews with multiple candidates simultaneously to streamline the process."
-  },
-  {
-    head: "Candidate Pool Management",
-    value: "Easily manage and filter the candidate pool to find the best fits for open positions."
-  }
+  
 ]
   console.log(user)
   const navigate=useNavigate()
@@ -59,54 +45,56 @@ value: `Track your application status and progress through the hiring pipeline.`
   }
   return (
     <div className="md:px-36 ">
-      <div className="flex my-10 items-center gap-8">
-        <div className="w-1/2">
-          <h1 className="text-6xl mb-8 font-bold">AI-cruiter</h1>
-          <p className="text-lg"> AI-based interview taker is here to revolutionize hiring—not by taking jobs, but by helping you land them. Recruiters can post job openings, and candidates can undergo AI-driven interviews designed to highlight their strengths and skills.</p>
+      <div className="flex my-16 md:my-32 items-center gap-8">
+        <div className="w-full items-center flex flex-col ">
+          <h1 className="text-2xl text-center md:text-6xl mb-4 md:mb-8 font-bold ">AI-cruiter</h1>
+          <h1 className="text-2xl text-center md:text-6xl mb-4 md:mb-8 font-bold ">AI-based interview taker </h1>
+          <p className="text-base md:text-lg w-full md:w-[70%] text-balance text-center my-8"> revolutionizing hiring not by taking jobs, but by helping you land them. Recruiters can post job openings, and candidates can undergo AI-driven interviews designed to highlight their strengths and skills.</p>
           <div className="mt-4">
-          {user.isLoggedIn?<Button onClick={handleClick} variant={"outline"}>Dashboard</Button>:<Button onClick={handleClick}>Signin</Button>}
+          {user.isLoggedIn?<Button onClick={handleClick} variant={"default"} size={"lg"}>Dashboard</Button>:<Button onClick={handleClick}>Signin</Button>}
 
           </div>
         </div>
-        <div className="w-1/2">
-            <img src="./assets/Hero3d.png" className="w-full" alt="" />
-        </div>
+        
       </div>
 
-        <h1 className="text-center text-6xl font-bold mt-[10rem]">Features</h1>
-      <div className="flex my-20 items-center gap-8 ">
-        <div className="w-1/2">
-            <img src="./assets/candidate.png" alt="" />
+        
+      <div className="relative flex my-16 md:my-36 m-auto  md:w-full w-[90%] items-center ">
+        <div className="glass-container  ">
+       <img src="./assets/dashboard.png" className="rounded-lg border shadow-lg" alt="" />
+        <div className="absolute -z-50 inset-0 w-full h-[100%]  bg-[#6d28d9e6]/50 blur-2xl filter ">
+
         </div>
-        <div className="w-1/2">
-          <ul>
-            <h1 className="text-3xl font-semibold">For Candidates:</h1>
-            {candidateFeatures.map((value, key) => {
-              return (
-                <li className="my-4 w-[30rem]" key={key}><span className="font-semibold ">{value.head}:</span> {value.value}.</li>
-                
-              )
-            })}
-            </ul>
         </div>
       </div>
+      <div className=" my-20">
 
-      <div className="flex my-20 items-center flex-row-reverse gap-8 ">
-        <div className="w-1/2">
-            <img src="./assets/recruiter.png" alt="" />
-        </div>
-        <div className="w-1/2">
-          <ul>
-            <h1 className="text-3xl font-semibold">For For Recruiters:</h1>
+            <h1 className="text-5xl font-semibold text-center">For For Recruiters:</h1>
+          
             {recruiterFeature.map((value, key) => {
               return (
-                <li className="my-4 w-[30rem]" key={key}><span className="font-semibold ">{value.head}:</span> {value.value}.</li>
+                <div key={key} className="h-screen">
+      <div className="flex  items-center flex-col-reverse md:flex-row-reverse gap-8 h-full">
+        <div className="md:w-1/2 w-[80%] p-4 md:h-3/5 h-1/2">
+          <div className="bg-white/50 w-full h-full flex  items-center justify-center " >
+            image
+            </div>
+        </div>
+                    <div className="md:w-1/2 w-full">
+                      <div className="w-[80%] m-auto">
+
+                  <h1 className="font-semibold text-3xl text-center">{value.head}:</h1>
+                  <p className="my-8 text-xl text-center">{value.value}</p>
+                      </div>
+
+                </div>
                 
-              )
-            })}
-            </ul>
         </div>
       </div>
+              )
+            })}
+            
+            </div>
     </div>
   )
 }

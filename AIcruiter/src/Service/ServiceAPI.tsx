@@ -95,8 +95,14 @@ export async function saveInterviewDetails(payload:dataDatype) {
 
 export async function getInterviewDetails(payload:string) {
   try {
-    
-    const userDetails = await Backendinstance.get(`/api/interview/${payload}`)
+    let token = Cookies.get("token")
+    // console.log("token in inter ", token)
+    const userDetails = await Backendinstance.get(`/api/interview/${payload}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type":"application/json"
+      }
+    })
     console.log(userDetails.data.data)
     return userDetails.data.data
    

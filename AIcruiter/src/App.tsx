@@ -16,7 +16,7 @@ function App() {
   // const { setUser}=useContext(UserContext)
 
   return (
-    <UserContextProvider>
+    <UserContextProvider >
       <BrowserRouter>
         <Header />
         <Toaster  position= 'top-center' />

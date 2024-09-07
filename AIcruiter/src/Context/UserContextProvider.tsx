@@ -45,7 +45,13 @@ const UserContextProvider:React.FC<UserContextProviderProps> = ({children}) => {
       console.log("user",user)
     }
 
-}, []);
+  }, []);
+  
+  useEffect(() => {
+    const root = window.document.documentElement
+
+    root.classList.add("dark")
+  },[])
   return (
       <UserContext.Provider value={{user,setUser}}>
           {children}

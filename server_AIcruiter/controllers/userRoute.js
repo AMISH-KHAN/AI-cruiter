@@ -80,9 +80,9 @@ router.post("/login",async (req, res) => {
 })
 
 
-router.get("/auth", (req, res) => {
+router.get("/auth", async(req, res) => {
     // console.log(req.headers.authorization)
-    const token = req.headers.authorization.split(' ')[1];
+    const token =await req.headers.authorization.split(' ')[1];
     jwt.verify(token,process.env.JWT_SECRETE_KEY, (err, decoded) => {
         if (err) {
             return res.status(401).send('Invalid token');

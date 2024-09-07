@@ -18,7 +18,8 @@ const app = express()
 
 // cors
 app.use(cors({
-    origin: "https://aicruiter.netlify.app", // Replace with your frontend domain and port
+    origin: "https://ai-cruiter-bay.vercel.app", // Replace with your frontend domain and port
+    // origin: "http://localhost:5173", // Replace with your frontend domain and port
     credentials: true // Allow credentials (cookies) to be included in the requests
 }));
 app.use(cookieParser())

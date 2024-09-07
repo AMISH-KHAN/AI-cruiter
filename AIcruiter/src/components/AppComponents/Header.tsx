@@ -26,12 +26,12 @@ export default function Header() {
   }
   return (
     <>
-        <header className="sticky top-0 flex h-16 items-center justify-between  w-full border-b bg-background px-4 md:px-36 ">
+        <header className="sticky top-0 flex h-16 items-center justify-between  w-full border-b bg-background px-4 md:px-36 z-50">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 justify-between w-full">
           <Link to={"/"}> <img src="./assets/Logo.png" className='w-[9rem]' alt="logo" /></Link>
           <div className='flex flex-row gap-4 items-center'>
 
-            {user.isLoggedIn?`welcome ${user.firstName}!!`:""}
+            
           
           {user.isLoggedIn ? <Link to="/dashboard" className='mr-4' ><Button variant={"outline"}>Dashboard</Button></Link> : ""} 
           {user.isLoggedIn ? <Button variant={"outline"} onClick={handleLogout}>LogOut</Button> : ""} 

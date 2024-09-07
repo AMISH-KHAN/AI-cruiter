@@ -24,9 +24,10 @@ const Mic :React.FC<{ setData: (data: ResultType[]|string[]) => void }> = ({ set
     
     // console.log("not recording", results[0])
     setData(results)
+    console.log("data",results)
     // if (results[questionNumber]) {
      
-    //   console.log(arrayanswer)
+    //   console.log(arrayanswer) 
       
     // }
     toast.error("Please turn on your mic")
