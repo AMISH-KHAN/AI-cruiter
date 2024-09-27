@@ -84,7 +84,15 @@ export async function authUser(payload:string) {
 export async function saveInterviewDetails(payload:dataDatype) {
   try {
     console.log(payload)
-    const interviewDetails = await Backendinstance.post('/api/interview', payload)
+    const interviewDetails = await Backendinstance.post('/api/interview', payload
+      , {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type":"application/json"
+        }
+      }
+      
+    )
     console.log(interviewDetails.data.data)
     return interviewDetails.data.data
    
