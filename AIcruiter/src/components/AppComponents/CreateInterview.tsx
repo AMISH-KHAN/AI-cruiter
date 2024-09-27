@@ -103,7 +103,7 @@ const CreateInterview: React.FC = () => {
             <Label htmlFor="skills" className="text-right">
              skills
             </Label>
-            <textarea  id="skills" name="skills" placeholder="ex: React.js Tailwindcss" className="col-span-3 border-2 rounded-md px-2 pt-2" onChange={handleChange} />
+            <textarea  id="skills" name="skills" placeholder="ex: React.js Tailwindcss" className="col-span-3 border-2 rounded-md px-2 pt-2 text-black" onChange={handleChange} />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="yearsofex" className="text-right">

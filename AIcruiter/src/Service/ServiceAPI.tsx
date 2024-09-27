@@ -2,6 +2,7 @@
 import { dataDatype, saveFeedbackType, userDataType } from "@/types";
 import axios, { AxiosError } from "axios"
 import Cookies from "js-cookie";
+let token = Cookies.get("token")
 interface ResponseData {
   // Define the structure of your expected response data
   data: string;
@@ -95,7 +96,7 @@ export async function saveInterviewDetails(payload:dataDatype) {
 
 export async function getInterviewDetails(payload:string) {
   try {
-    let token = Cookies.get("token")
+   
     // console.log("token in inter ", token)
     const userDetails = await Backendinstance.get(`/api/interview/${payload}`, {
       headers: {
@@ -116,7 +117,14 @@ export async function getInterviewDetails(payload:string) {
 export async function updatesingleInterview(payload:{ interviewid:string,feedbackResponse:string}) {
   try {
     
-    const interviewDetails = await Backendinstance.put(`/api/interview/singleinterview/${payload.interviewid}`,payload)
+    const interviewDetails = await Backendinstance.put(`/api/interview/singleinterview/${payload.interviewid}`, payload
+     , {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type":"application/json"
+      }
+    }
+    )
     console.log(interviewDetails.data.data)
     return interviewDetails.data.data
    
