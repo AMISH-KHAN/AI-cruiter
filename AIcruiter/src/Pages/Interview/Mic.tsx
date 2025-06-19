@@ -8,7 +8,7 @@ const Mic :React.FC<{ setData: (data: ResultType[]|string[]) => void }> = ({ set
   // const [arrayanswer, setArrayAnswers] = useState<interviewAnswer[]>([])
   const {
     error,
- 
+    interimResult,
     isRecording,
     results,
     startSpeechToText,
@@ -19,7 +19,11 @@ const Mic :React.FC<{ setData: (data: ResultType[]|string[]) => void }> = ({ set
   });
   
 
-
+  if (isRecording) {
+    console.log("is recording")
+    console.log(results)
+  }
+  
   if (!isRecording) {
     
     // console.log("not recording", results[0])
@@ -55,7 +59,12 @@ const Mic :React.FC<{ setData: (data: ResultType[]|string[]) => void }> = ({ set
   
   return (
       <div className='w-full flex items-center justify-center mb-8'>
-
+        <ul>
+        {results.map((result) => (
+          <li key={result.timestamp}>{result.transcript}</li>
+        ))}
+        {interimResult && <li>{interimResult}</li>}
+      </ul>
       {/* <h1>Recording: {isRecording.toString()}</h1> */}
       <Button onClick={isRecording ? stopSpeechToText : startSpeechToText}  className=" m-auto  " >
         {isRecording ? 'Stop Recording' : 'Start Recording'}

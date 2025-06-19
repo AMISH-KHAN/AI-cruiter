@@ -168,3 +168,46 @@ export async function saveFeedback(payload:saveFeedbackType) {
 //     console.log(error)
 //     }
 // }
+
+
+
+
+// recruiter API
+
+export async function saveRecruiter(payload:userDataType) {
+  try {
+  
+    console.log(payload)
+  
+  const response = await Backendinstance.post("/api/recruiter", payload)
+  console.log(response)
+  return response.data
+}
+catch (error) {
+  const err=error as AxiosError<ResponseData>
+  console.log(err.response?.data)
+  return err.response?.data
+}
+}
+
+
+
+export async function RecruiterLogin(payload:{email:string,password:string}) {
+  try {
+    console.log(payload)
+    console.log("vite",import.meta.env.VITE_BACKEND_URL)
+    const response = await Backendinstance.post("/api/recruiter/login", payload, {
+      withCredentials: true // Include credentials (cookies)
+  })
+    console.log(response)
+    Cookies.set("token", response.data.data.token, {
+      expires: new Date(Date.now() + 24 * 60 * 60 * 60 * 1000),
+    })
+    return response.data
+  }
+  catch (error) {
+    const err=error as AxiosError<ResponseData>
+    console.log(err.response?.data)
+    return err.response?.data
+  }
+}

@@ -5,6 +5,7 @@ async function verifyToken(req, res, next) {
     let token;
     if (req.headers.authorization) {
         token = await req.headers.authorization.split(" ")[1]
+        console.log("hearder token",token)
     }
     else if (req.cookies && req.cookies.token) {
         token = await req.cookies.token
@@ -18,7 +19,7 @@ async function verifyToken(req, res, next) {
         console.log(token)
        jwt.verify(token, process.env.JWT_SECRETE_KEY, (error)=>{
             if (error) {
-                res.status(401).send({result:"failed",message:"you are not a authorized user 2"})
+                res.status(401).send({result:"failed",message:"you are not a authorized user 2",error:error})
             }
             else {
                 next()

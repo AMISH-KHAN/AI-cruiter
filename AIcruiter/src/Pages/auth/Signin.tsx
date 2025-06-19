@@ -10,7 +10,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import UserContext from "@/Context/UserContext"
-import { UserLogin } from "@/Service/ServiceAPI"
+import { RecruiterLogin, UserLogin } from "@/Service/ServiceAPI"
+import { Switch } from "@/components/ui/switch"
 import {useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
@@ -22,6 +23,17 @@ export function Signin() {
     email: "",
     password:""
   })
+
+  const [isRecruiter, setIsRecruiter] = useState(false);
+
+  const handleSwitchChange = () => {
+    setIsRecruiter((state) => {
+      return !state
+    });
+    console.log("check")
+  };
+
+
   const navigate=useNavigate()
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -37,8 +49,11 @@ export function Signin() {
 
   const handleSubmit =async () =>{
     
+    if (isRecruiter) {
+      
+
       console.log(data)
-      const response =await UserLogin(data)
+      const response = await RecruiterLogin(data)
       console.log(response)
       if (response.result === "fail") {
         toast.error(response.message)
@@ -49,12 +64,34 @@ export function Signin() {
         console.log(response)
         setUser({
           ...response.data,
-          isLoggedIn:true
+          isLoggedIn: true
         })
-        localStorage.setItem("id",response.data._id)
+        localStorage.setItem("id", response.data._id)
+        navigate("/recruiter-dashboard")
+      }
+    }
+    else {
+      
+    
+
+      console.log(data)
+      const response = await UserLogin(data)
+      console.log(response)
+      if (response.result === "fail") {
+        toast.error(response.message)
+
+      }
+      else {
+        toast.success(response.message)
+        console.log(response)
+        setUser({
+          ...response.data,
+          isLoggedIn: true
+        })
+        localStorage.setItem("id", response.data._id)
         navigate("/dashboard")
       }
-    
+    }
   }
 
 
@@ -69,7 +106,13 @@ export function Signin() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
+          <div className="grid gap-4">
+            <div className="flex items-center gap-4">
+            <Switch id="Recruiter" onClick={handleSwitchChange}/>
+            
+      <Label htmlFor="airplane-mode">Login as Recruiter</Label>
+              
+    </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input onChange={handleChange}

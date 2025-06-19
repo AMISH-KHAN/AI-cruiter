@@ -11,6 +11,7 @@ require("./dbconnect")
 
 const interviewRoute=require("./controllers/interviewRoute")
 const userRoute=require("./controllers/userRoute")
+const recruiterRoute=require("./controllers/Recruiter/RecruiterRoute")
 const feedbackRoute=require("./controllers/FeedbackRoute")
 
 
@@ -18,8 +19,8 @@ const app = express()
 
 // cors
 app.use(cors({
-    origin: "https://ai-cruiter-bay.vercel.app", // Replace with your frontend domain and port
-    // origin: "http://localhost:5173", // Replace with your frontend domain and port
+    // origin: "https://ai-cruiter-bay.vercel.app", // Replace with your frontend domain and port
+    origin: "http://localhost:5173", // Replace with your frontend domain and port
     credentials: true // Allow credentials (cookies) to be included in the requests
 }));
 app.use(cookieParser())
@@ -28,6 +29,7 @@ app.use(express.json())
 app.use("/api/interview",interviewRoute)
 app.use("/api/feedback",feedbackRoute)
 app.use("/api/user",userRoute)
+app.use("/api/recruiter",recruiterRoute)
 
 const PORT = process.env.PORT || 8000
 

@@ -49,6 +49,8 @@ export interface userDataType{
     lastName:string,
     password: string,
     role:string|"candidate"
+    designation:string|null,
+    companyName:string|null
 }
 export interface saveFeedbackType{
     interviewid: string,

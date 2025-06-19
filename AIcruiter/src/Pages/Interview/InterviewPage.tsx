@@ -21,8 +21,9 @@ function seprategeminiResponse(data:string) {
     // Find the line containing "Average Marks:"
     const averageMarksLine = lines.find(line => line.startsWith('**Average Marks:'));
     // Extract the average marks
-    const averageMarks = averageMarksLine ? averageMarksLine.split(":**")[1].trim() : null;
-
+    console.log(averageMarksLine)
+    const averageMarks = averageMarksLine ? averageMarksLine.split(":")[1].trim() : null;
+    console.log(averageMarks?.slice(0,2))
     // Find the line containing "Overall Feedback:"
     const feedbackLine = lines.find(line => line.startsWith("**Overall Feedback:**"));
     console.log(feedbackLine)
@@ -30,7 +31,7 @@ function seprategeminiResponse(data:string) {
     const overallFeedback = feedbackLine ? lines.slice(lines.indexOf(feedbackLine) + 1).join("\n").trim() : null;
     let processedData = {
       mainFeedback: JSON.parse(preprocessedData[1].replace("json", "").replace("```", '').replace("```", '')),
-      marks: Number(averageMarks),
+      marks: Number(averageMarks?.slice(0,2)),
       generalFeedback: overallFeedback
     }
     return processedData
